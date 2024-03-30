@@ -1,6 +1,5 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { useState } from "react";
+
 const navLinks = [
   { name: "home", link: "#home" },
   { name: "Header", link: "#Header" },
@@ -8,20 +7,33 @@ const navLinks = [
   { name: "Contact", link: "#Contact" },
 ];
 const NavbarComponent = () => {
+  const [menu, setMenu] = useState(false);
+  console.log(menu);
   return (
-    <Navbar bg="light" data-bs-theme="light">
-      <Container>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav className="me-auto">
+    <nav className="flex  justify-between py-3 px-8 relative">
+      <h1>logo</h1>
+      <div>
+        <button
+          className="block md:hidden"
+          onClick={() => {
+            setMenu((prev) => !prev);
+          }}
+        >
+          menu
+        </button>
+        <ul
+          className={`md:flex flex-col md:flex-row  ${
+            !menu ? "hidden" : "flex"
+          }  gap-2 absolute z-40 w-56 h-56 bg-white top-8 right-0`}
+        >
           {navLinks.map((v, i) => (
-            <Nav.Link href={v.link} key={i}>
-              {" "}
-              {v.name}{" "}
-            </Nav.Link>
+            <li key={i}>
+              <a href={v.link}>{v.name}</a>
+            </li>
           ))}
-        </Nav>
-      </Container>
-    </Navbar>
+        </ul>
+      </div>
+    </nav>
   );
 };
 

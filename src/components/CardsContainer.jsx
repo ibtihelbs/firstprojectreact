@@ -1,6 +1,5 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import SingleCard from "./Card";
-import { Container } from "react-bootstrap";
 const products = [
   {
     title: "Wireless Headphones",
@@ -59,18 +58,29 @@ const products = [
 ];
 
 const CardsContainer = () => {
+  const [latest, setLatest] = useState(false);
+  const [productsDis, setProductsDis] = useState(products);
+  const hundleProd = () => {
+    setLatest((prev) => !prev);
+  };
+  useEffect(() => {
+    if (latest) {
+      const newProd = [...productsDis].slice(0, 3);
+      setProductsDis(newProd);
+    } else {
+      setProductsDis(products);
+    }
+  }, [latest]);
+
   return (
-    <Container
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "20px",
-      }}
-    >
-      {products.map((v, i) => (
-        <SingleCard key={i} prod={v} />
-      ))}
-    </Container>
+    <div className="px-8 ">
+      <button onClick={hundleProd}>show all </button>
+      <div className="grid grid-cols-3 gap-4">
+        {productsDis.map((v, i) => (
+          <SingleCard prod={v} key={i} />
+        ))}
+      </div>
+    </div>
   );
 };
 
