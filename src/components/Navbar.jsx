@@ -5,6 +5,7 @@ const navLinks = [
   { name: "Shop", link: "/shop" },
   { name: "Blog", link: "/Blog" },
   { name: "Contact", link: "/contact" },
+  { name: "admin", link: "/admin" },
 ];
 const NavbarComponent = () => {
   const [menu, setMenu] = useState(false);

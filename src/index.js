@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Main from "./layout/Main";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SingleProd from "./pages/SingleProd";
+import Admin from "./pages/Admin";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const route = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const route = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "admin",
+        element: <Admin />,
       },
       {
         path: "/prod/:id",
