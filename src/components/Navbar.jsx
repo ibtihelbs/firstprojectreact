@@ -1,14 +1,13 @@
 import { useState } from "react";
-
+import { Link, NavLink } from "react-router-dom";
 const navLinks = [
-  { name: "home", link: "#home" },
-  { name: "Header", link: "#Header" },
-  { name: "Cards", link: "#Cards" },
-  { name: "Contact", link: "#Contact" },
+  { name: "home", link: "/" },
+  { name: "Shop", link: "/shop" },
+  { name: "Blog", link: "/Blog" },
+  { name: "Contact", link: "/contact" },
 ];
 const NavbarComponent = () => {
   const [menu, setMenu] = useState(false);
-  console.log(menu);
   return (
     <nav className="flex  justify-between py-3 px-8 relative">
       <h1>logo</h1>
@@ -24,11 +23,18 @@ const NavbarComponent = () => {
         <ul
           className={`md:flex flex-col md:flex-row  ${
             !menu ? "hidden" : "flex"
-          }  gap-2 absolute z-40 w-56 h-56 bg-white top-8 right-0`}
+          }  gap-2 items-center justify-between p-3 absolute z-40 md:w-auto md:h-auto w-56 h-56 bg-white top-8 right-0`}
         >
           {navLinks.map((v, i) => (
             <li key={i}>
-              <a href={v.link}>{v.name}</a>
+              <NavLink
+                className={({ isActive }) => {
+                  return isActive ? "bg" : "";
+                }}
+                to={v.link}
+              >
+                {v.name}
+              </NavLink>
             </li>
           ))}
         </ul>
